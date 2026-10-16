@@ -30,14 +30,17 @@ import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.12.2/fireba
 import { getAuth, onAuthStateChanged, signInWithEmailAndPassword, createUserWithEmailAndPassword, signOut } from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js';  
 import { getFirestore, collection, addDoc, getDocs, deleteDoc, doc, serverTimestamp } from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js';  
 // GANTI nilai contoh di bawah dengan nilai dari Firebase Console > Project settings > Your apps > SDK setup and configuration.  
-const firebaseConfig = {  
-  apiKey: "GANTI_DENGAN_API_KEY",  
-  authDomain: "GANTI_DENGAN_PROJECT_ID.firebaseapp.com",  
-  projectId: "GANTI_DENGAN_PROJECT_ID",  
-  storageBucket: "GANTI_DENGAN_PROJECT_ID.firebasestorage.app",  
-  messagingSenderId: "GANTI_DENGAN_SENDER_ID",  
-  appId: "GANTI_DENGAN_APP_ID"  
-};  
+
+const firebaseConfig = {
+  apiKey: "AIzaSyDM3ls2eSXwbdPWj78FzoOdBuLqHBu3rv8",
+  authDomain: "data-rt-digital.firebaseapp.com",
+  projectId: "data-rt-digital",
+  storageBucket: "data-rt-digital.firebasestorage.app",
+  messagingSenderId: "45070511707",
+  appId: "1:45070511707:web:a2ab79c5819e910b73597e",
+  measurementId: "G-3ZR38JCY0Q"
+};
+  
 const $ = id => document.getElementById(id);  
 const configReady = firebaseConfig.apiKey !== 'GANTI_DENGAN_API_KEY' && firebaseConfig.projectId !== 'GANTI_DENGAN_PROJECT_ID';  
 let auth, db, residents = [], dues = [], currentUser = null;  
