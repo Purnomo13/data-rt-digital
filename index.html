@@ -47,7 +47,21 @@ let auth, db, residents = [], dues = [], currentUser = null;
 const rupiah = n => new Intl.NumberFormat('id-ID',{style:'currency',currency:'IDR',maximumFractionDigits:0}).format(Number(n)||0);  
 const esc = s => String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));  
 function message(id,text){$(id).textContent=text;}  
-if(configReady){try{const app=initializeApp(firebaseConfig);auth=getAuth(app);db=getFirestore(app);}catch(e){message('authMsg','Konfigurasi Firebase belum benar: '+e.message)}}else{message('authMsg','Langkah berikutnya: ganti nilai contoh firebaseConfig di file index.html dengan konfigurasi dari proyek Firebase.');$('loginBtn').disabled=true;$('registerBtn').disabled=true;}  
+if (configReady) {
+  try {
+    const app = initializeApp(firebaseConfig);
+    auth = getAuth(app);
+    db = getFirestore(app);
+    $('setupCard').classList.add('hidden');
+    message('authMsg', 'Firebase siap. Silakan masuk dengan akun pengurus.');
+  } catch (e) {
+    message('authMsg', 'Konfigurasi Firebase bermasalah: ' + e.message);
+  }
+} else {
+  message('authMsg', 'Konfigurasi Firebase belum diisi.');
+  $('loginBtn').disabled = true;
+  $('registerBtn').disabled = true;
+  }
 $('loginBtn').onclick=async()=>{if(!auth)return;try{await signInWithEmailAndPassword(auth,$('email').value.trim(),$('password').value);message('authMsg','Berhasil masuk.')}catch(e){message('authMsg','Gagal masuk: '+e.message)}};  
 $('registerBtn').onclick=async()=>{if(!auth)return;try{await createUserWithEmailAndPassword(auth,$('email').value.trim(),$('password').value);message('authMsg','Akun dibuat. Minta ketua RT memberi hak akses sesuai aturan yang aman.')}catch(e){message('authMsg','Gagal membuat akun: '+e.message)}};  
 $('logoutBtn').onclick=()=>signOut(auth);  
